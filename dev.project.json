@@ -1,0 +1,12 @@
+{
+    "name": "Fusion-Router",
+    "tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+            "FusionRouter": {
+                "$path": "src"
+            }
+        }
+    }
+}
