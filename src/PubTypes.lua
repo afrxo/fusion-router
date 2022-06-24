@@ -5,7 +5,7 @@ export type App = {
     use: (App, Router) -> (),
     mount: (App, Parent: Instance) -> (),
     unmount: () -> (),
-    getContext: () -> Context<any>,
+    getContext: (App) -> Context<any>,
     redirect: (App, Path: string, Props: table) -> ()
 }
 
