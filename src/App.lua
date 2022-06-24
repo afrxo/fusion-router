@@ -11,12 +11,14 @@ local function updateRenderedState(App, Route, Props)
     local context = createContext(App, Route.path, Props)
     local renderedState = Route.factory(context, Props)
     App.state:set(reconcile(renderedState))
+    App.ctx = context
 end
 
 local function createApp()
     local App = setmetatable({}, getmetatable(Symbols.App))
     App.state = FusionContext.Value(nil)
     App.routes = {}
+    App.ctx = createContext(App, "/", {})
 
     function App:use(router)
         if (getmetatable(router) == getmetatable(Symbols.Router)) then
@@ -44,6 +46,10 @@ local function createApp()
             BackgroundTransparency = 1,
             [FusionContext.Children] = self.state
         })
+    end
+
+    function App:getContext()
+        return self.ctx
     end
 
     function App:unmount()
